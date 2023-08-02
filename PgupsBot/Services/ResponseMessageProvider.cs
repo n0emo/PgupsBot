@@ -22,7 +22,7 @@ public class ResponseMessageProvider
         return new MessagesSendParams()
         {
             DontParseLinks = true,
-            Message = "Стартовое меню",
+            Message = _displayProvider.GetDisplay("start")!,
             Keyboard = _vkKeyboardProvider.GetKeyboard("start")!,
             RandomId = Random.Shared.Next(),
             PeerId = message.PeerId,
@@ -48,7 +48,7 @@ public class ResponseMessageProvider
     private async Task<MessagesSendParams?> StartCommand(Message message)
     {
         var response = await GetDefaultResponse(message);
-        response.Message = "Добро пожаловать в бота!";
+        response!.Message = "Добро пожаловать в бота!";
         response.Keyboard = _vkKeyboardProvider.GetKeyboard("start")!;
         return response;
     }
